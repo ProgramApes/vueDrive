@@ -1,0 +1,122 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
+body { background:#fff; color:#555; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; height: 100%;}
+td,th,caption { font-size:14px; }
+h1, h2, h3, h4, h5, h6 { font-weight:normal; font-size:100%; }
+address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal;}
+a { color:#555; text-decoration:none; }
+a:hover { text-decoration:underline; }
+img { border:none; }
+ol,ul,li { list-style:none; }
+input, textarea, select, button { font:14px Verdana,Helvetica,Arial,sans-serif; }
+table { border-collapse:collapse; }
+html {overflow-y: scroll;height: 100%;} 
+
+.clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
+.clearfix { *zoom:1; }
+
+.header{
+  display: inline-flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+  height:45px;
+  background-color: #0082c9;
+  
+}
+#header .header-left{
+  display:inline-flex;
+  flex-direction: row; 
+  flex-grow: 1;
+}
+#header .header-right {
+  justify-content: flex-end;
+  display: inline-flex;
+  align-items: center;
+}
+#appmenu{
+  width: auto;
+  display: inline-block;
+  clear: both;
+}
+#appmenu li{  
+  float: left;
+  position: relative;
+  vertical-align: top !important;
+  height: 45px;
+  cursor: pointer;
+}
+#appmenu li a {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 12px;
+  height: 21px;
+  text-align: center;
+  vertical-align: top !important;
+}
+#appmenu li a:before {
+  content: ' ';
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border: 0 solid transparent;
+  border-bottom-color: #fff;
+  border-width: 10px;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 0;
+}
+.logo-icon{
+  width: 125px;
+  height: 43px;
+  flex-direction: row;
+}
+.logo{
+  background-image: url("../img/Googlelogo.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  flex-grow: 0;
+}
+input[type=search] {
+	border:1px solid #0082c9;
+	border-radius:5px;
+	padding:5px 0 5px 8px;
+}
+input[type=search]:hover {
+	border:1px solid #00C5FF;
+}
+input[type=search]:focus {
+	border:1px solid #3385FF;
+	box-shadow:0 0 2px #3385FF;
+}
+.searchIcon{
+  width: 30px;
+  height: 30px;
+  background-image: url("../img/搜索.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#left{
+  width: 250px;
+  height: 100%;
+  background: #fff;
+  border-right: 1px solid #ebebeb;
+    display: flex;
+    flex-direction: column;
+    border-right:solid 1px #ebebeb;
+}
+#dirve{
+  height: 100%;
+  background: #fff;
+  flex-grow: 1;
+}
+#conten{
+  width: 100%;
+  height: 95%;
+  margin-top:45px;
+  display: inline-flex;
+  position: fixed;
+}
