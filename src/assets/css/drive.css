@@ -120,3 +120,17 @@ input[type=search]:focus {
   display: inline-flex;
   position: fixed;
 }
+#left_header{
+  display: flex;
+  flex-direction: row;
+  border-bottom:solid 1px #ebebeb;
+  text-align: center;    
+  align-items:center;
+}
+#left_header_arrow{
+  height: 40px;
+  width: 50px;
+}
+#left_header_arrow img{
+  margin-top: 6px;
+}

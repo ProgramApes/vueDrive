@@ -1,4 +1,5 @@
 
+import func from './vue-temp/vue-editor-bridge';
 <template>
   <div id="app" style="height:100%;">
     <div id="header" class="header">
@@ -26,7 +27,11 @@
     </div>
     <div id="conten">
       <div id="left">
-        <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick" :expand-on-click-node="false"></el-tree>
+        <div id="left_header">
+          <el-input  placeholder="输入关键字进行过滤"  v-model="filterText"></el-input>
+          <div @click="arrowChange" id="left_header_arrow"><img id="arrow" :src="src"></div>
+          </div>        
+        <el-tree  class="filter-tree"  :data="data"  :props="defaultProps"  default-expand-all  :filter-node-method="filterNode" :expand-on-click-node="false" :highlight-current="true" :auto-expand-parent="true" ref="tree"></el-tree>
       </div>
       <router-view></router-view>
     </div>
@@ -35,60 +40,131 @@
 
 <script>
 export default {
-   data() {
-      return {
-        data: [{
-          label: '一级 1',
-          children: [{
-            label: '二级 1-1',
-            children: [{
-              label: '三级 1-1-1'
-            }]
-          }]
-        }, {
-          label: '一级 2',
-          children: [{
-            label: '二级 2-1',
-            children: [{
-              label: '三级 2-1-1'
-            }]
-          }, {
-            label: '二级 2-2',
-            children: [{
-              label: '三级 2-2-1'
-            }]
-          }]
-        }, {
-          label: '一级 3',
-          children: [{
-            label: '二级 3-1',
-            children: [{
-              label: '三级 3-1-1'
-            }]
-          }, {
-            label: '二级 3-2',
-            children: [{
-              label: '三级 3-2-1'
-            }]
-          }]
-        }],
-        defaultProps: {
-          children: 'children',
-          label: 'label'
-        }
-      };
-    },
-    methods: {
-      handleNodeClick(data) {
-        console.log(data);
-      }
+  watch: {
+    filterText(val) {
+      this.$refs.tree.filter(val);
     }
+  },
+  data() {
+    return {
+      src: require("./assets/img/上箭头.png"),
+      filterText: "",
+      data: [
+        {
+          label: "一级 1",
+          children: [
+            {
+              label: "二级 1-1",
+              children: [
+                {
+                  label: "三级 1-1-1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          label: "一级 2",
+          children: [
+            {
+              label: "二级 2-1",
+              children: [
+                {
+                  label: "三级 2-1-1"
+                }
+              ]
+            },
+            {
+              label: "二级 2-2",
+              children: [
+                {
+                  label: "三级 2-2-1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          label: "一级 3",
+          children: [
+            {
+              label: "二级 3-1",
+              children: [
+                {
+                  label: "三级 3-1-1"
+                }
+              ]
+            },
+            {
+              label: "二级 3-2",
+              children: [
+                {
+                  label: "三级 3-2-1"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      defaultProps: {
+        children: "children",
+        label: "label"
+      }
+    };
+  },
+  methods: {
+    filterNode(value, data) {
+      if (!value) return true;
+      return data.label.indexOf(value) !== -1;
+    },
+    handleNodeClick(data) {
+      console.log(data);
+    },
+    arrowChange() {
+      if (this.src == require("./assets/img/上箭头.png")) {
+        this.src = require("./assets/img/下箭头.png");
+        var element = document.getElementsByClassName(
+          "el-tree-node__expand-icon el-icon-caret-right expanded"
+        );
+        for (var i = 0; i < element.length; i++) {
+          element[i].click();
+        }
+      } else {
+        this.src = require("./assets/img/上箭头.png");
+        var elementparent = document.querySelectorAll(
+          "[style='padding-left: 0px;']"
+        );
+        var element = document.querySelectorAll(
+          "[style='padding-left: 18px;']"
+        );
+        for (var i = 0; i < elementparent.length; i++) {
+          elementparent[i].getElementsByTagName("span")[0].click();
+        }
+        setTimeout(function(){
+          for (var j = 0; j < element.length; j++) {
+          element[j].getElementsByTagName("span")[0].click();
+        }
+        }, 300 )
+        
+      }
+    },
+  },
+  defaultProps: {
+    children: "children",
+    label: "label"
+  }
 };
 </script>
 
 <style>
 @import "./assets/css/drive.css";
 #app {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
+.el-tree-node__content {
+  height: 34.48px;
+}
+.el-input__inner {
+  border: 0px solid #dcdfe6;
 }
 </style>
