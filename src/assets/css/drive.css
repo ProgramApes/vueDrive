@@ -108,11 +108,6 @@ input[type=search]:focus {
     flex-direction: column;
     border-right:solid 1px #ebebeb;
 }
-#dirve{
-  height: 100%;
-  background: #fff;
-  flex-grow: 1;
-}
 #conten{
   width: 100%;
   height: 95%;

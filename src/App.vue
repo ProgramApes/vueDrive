@@ -144,7 +144,7 @@ export default {
           for (var j = 0; j < element.length; j++) {
           element[j].getElementsByTagName("span")[0].click();
         }
-        }, 300 )
+        }, 400 )
         
       }
     },
